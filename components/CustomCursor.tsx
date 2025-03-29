@@ -39,18 +39,30 @@ const CustomCursor = () => {
     const interactiveSelectors = "a, button, input, textarea, [role='button']"
 
     const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement
+      let target = e.target as HTMLElement
+    
+      // Si el elemento no es interactivo, verificar su padre (para el caso de imágenes dentro de <a>)
+      if (!target.matches(interactiveSelectors) && target.parentElement) {
+        target = target.parentElement
+      }
+    
       if (target && target.matches(interactiveSelectors)) {
         setCursorImg("/seleccion.png")
       }
     }
-
+    
     const handleMouseOut = (e: MouseEvent) => {
-      const target = e.target as HTMLElement
+      let target = e.target as HTMLElement
+    
+      if (!target.matches(interactiveSelectors) && target.parentElement) {
+        target = target.parentElement
+      }
+    
       if (target && target.matches(interactiveSelectors)) {
         setCursorImg("/cursor.png")
       }
     }
+    
 
     window.addEventListener("mousemove", handleMouseMove)
     window.addEventListener("mouseover", handleMouseOver)

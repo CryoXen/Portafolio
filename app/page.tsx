@@ -12,6 +12,7 @@ import Image from "next/image"
 import { HolographicScene } from "@/components/HolographicScene"
 import CustomCursor from "@/components/CustomCursor"
 import TechStack from "@/components/TechStack"
+import { Mail, Phone, Github, Linkedin } from "lucide-react"
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -19,26 +20,26 @@ gsap.registerPlugin(ScrollTrigger)
 const projects = [
   {
     title: "Zentry Remake",
-    description:
-      "A comprehensive design system built with React and Tailwind CSS. Features modern UI components and responsive layouts.",
-    image: "/placeholder.svg?height=400&width=600",
+    description: (
+      <>
+        Proyecto inspirado en el sitio{" "}
+        <a
+          href="https://zentry.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{ color: "pink", textDecoration: "none" }}
+        >
+          Zentry
+        </a>
+        , recreado en NextJS. Enfocada para mejorar las habilidades de JavaScript,
+        reutilización de componentes en React, libreria de animacion moderna (GSAP) y
+        diseño responsivo.
+      </>
+    ),
+    image: "/zentry-remake.png",
   },
-  {
-    title: "LastWrapped",
-    description: "An e-commerce platform with real-time inventory management and seamless payment integration.",
-    image: "/placeholder.svg?height=400&width=600",
-  },
-  {
-    title: "Project 3",
-    description: "A mobile-first web application for tracking personal fitness goals and nutrition.",
-    image: "/placeholder.svg?height=400&width=600",
-  },
-  {
-    title: "Project 4",
-    description: "An AI-powered content management system with advanced search capabilities.",
-    image: "/placeholder.svg?height=400&width=600",
-  },
-]
+];
+
 
 export default function Portfolio() {
   const [activeSection, setActiveSection] = useState("projects")
@@ -119,7 +120,7 @@ export default function Portfolio() {
                   </p>
                   <p className="mb-4 text-justify">
                   Tengo la certeza de que la web es una ventana a una segunda realidad. 
-                  Por ese mismo motivo, me empeño en crear diseños para conectar con la gente y crear una experiencias únicas. 
+                  Por ese mismo motivo, me empeño en diseños para conectar con la gente y crear experiencias únicas. 
                   Busco diversificar, expandir mi conocimiento y trabajo para ampliar las posibilidades del desarrollo web. 
                   Así como buscar nuevas expresiones y pensamientos, empujando el límite de lo que es posible en el entorno digital.
                   </p>
@@ -162,12 +163,14 @@ export default function Portfolio() {
                     <CarouselItem key={index}>
                       <div className="flex flex-col items-center">
                         <div className="relative w-full aspect-[3/2] mb-6">
+                          <a href="https://zentry-remake-ten.vercel.app" target="_blank" rel="noopener noreferrer">
                           <Image
                             src={project.image || "/placeholder.svg"}
                             alt={project.title}
                             fill
                             className="object-cover rounded-lg"
                           />
+                          </a>
                         </div>
                         <h3 className="text-2xl font-medium mb-3">{project.title}</h3>
                         <p className="text-muted-foreground text-center max-w-lg">{project.description}</p>
@@ -184,13 +187,55 @@ export default function Portfolio() {
           <section
             ref={(el) => { sectionRefs.current[2] = el; }}
             id="contact"
-            className="min-h-screen flex items-center justify-center p-6"
+            className="min-h-screen flex flex-col items-center justify-center p-6"
           >
-            <div className="max-w-2xl">
-              <h2 className="text-4xl font-light mb-6">Contact</h2>
-              <p className="mb-4">Email: your.email@example.com</p>
-              <p className="mb-4">Phone: +1 234 567 8900</p>
-              <p>Social Media: @yourhandle</p>
+            <div className="max-w-4xl w-full text-center">
+              <h2 className="text-4xl font-light mb-12">Contacto</h2>
+
+              <div className="bg-accent/10 backdrop-blur-sm p-8 rounded-lg border border-accent/20 mb-12">
+                <p className="mb-8 text-center" >
+                  Siempre interesado en nuevos proyectos, propuestas y colaboraciones. <br/>
+                  No dudes en comunicarte conmigo para cualquier consulta o pregunta.
+                </p>
+                <div className="flex justify-center gap-6">
+                  <a
+                    href="https://github.com/CryoXen"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-accent/10 hover:bg-accent/30 transition-colors duration-300"
+                  >
+                    <Github className="h-6 w-6" />
+                    <span className="sr-only">GitHub</span>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/christian-rub%C3%AD-cirilo-300a1a350/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-3 rounded-full bg-accent/10 hover:bg-accent/30 transition-colors duration-300"
+                  >
+                    <Linkedin className="h-6 w-6" />
+                    <span className="sr-only">LinkedIn</span>
+                  </a>
+                  <a
+                    href="mailto:chrisrr.c@icloud.com"
+                    className="p-3 rounded-full bg-accent/10 hover:bg-accent/30 transition-colors duration-300"
+                  >
+                    <Mail className="h-6 w-6" />
+                    <span className="sr-only">Email</span>
+                  </a>
+                  <a
+                    href="tel:+52 722 780 9782"
+                    className="p-3 rounded-full bg-accent/10 hover:bg-accent/30 transition-colors duration-300"
+                  >
+                    <Phone className="h-6 w-6" />
+                    <span className="sr-only">Phone</span>
+                  </a>
+                </div>
+                
+              </div>
+
+              
+            
             </div>
           </section>
 
